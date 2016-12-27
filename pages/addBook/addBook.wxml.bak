@@ -1,6 +1,6 @@
 <view class="page__bd page__bd_spacing">
     <view class="weui-cells__title">录入方式</view>
- <!--   <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_switch">
             <view class="weui-cell__bd">扫码录入:</view>
             <view class="weui-cell__ft">
@@ -13,7 +13,7 @@
                 <switch checked />
             </view>
         </view>
-    </view>-->
+    </view>
     <form wx:if="{{isShowInputForm}}">
         <view class="weui-cells__title">图书基本信息:</view>
         <view class="weui-cells weui-cells_after-title">

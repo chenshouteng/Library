@@ -1,7 +1,21 @@
 {
   "pages":[
-    "pages/index/index"
+    "pages/index/index",
+    "pages/addBook/addBook"
   ],
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "通讯录查询",
+      "iconPath": "assets/img/search-1.png",
+      "selectedIconPath": "assets/img/search.png"
+    },{
+      "pagePath": "pages/addBook/addBook",
+      "text": "录入",
+      "iconPath": "assets/img/dy-1.png",
+      "selectedIconPath": "assets/img/dy.png"
+    }]
+  },
   "window":{
     "backgroundTextStyle":"black",
     "navigationBarBackgroundColor": "#fff",
