@@ -12,6 +12,7 @@ Page({
     name: '',
     phone:'',
     company:'',
+    index:'',
     inputValue: ''//存放输入查询的数据
   },
   inputChange: function (e) {
