@@ -45,7 +45,7 @@ Page({
 		//var result="{"+"\""+"name"+"\""+":"+"\""+this.data.name+"\""+","+"\""+"phone"+"\""+":"+"\""+this.data.phone+"\""+","+"\""+"company"+"\""+":"+"\""+this.data.company+"\""+","+"\""+"index"+"\""+":"+"\""this.data.inputIndex+"\""+"}";  
     //var result={"\""+ "name"+"\""+":"+"\""+this.data.name+"\""}
  
-    //也可以用result.[this.data.name] = ...多看犀牛书和红宝书
+    //也可以用result.[this.data.name] = ...多看犀牛书和红书
     var result = {
     	[this.data.name]:{
     	"name":this.data.name,
