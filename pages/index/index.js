@@ -10,9 +10,11 @@ Page({
   data: {
     //addressBook: {},//存放通讯录的地方
     name: '',
-    phone:'',
-    company:'',
-    index:'',
+    phone: '',
+    company: '',
+    index: '',
+    loginUrl: '../login/login',
+    hasLogin: app.globalData.hasLogin,
     inputValue: ''//存放输入查询的数据
   },
   inputChange: function (e) {
@@ -155,6 +157,22 @@ Page({
 
 
   },
+  login: function () {
+    var that = this
+    wx.login({
+      success: function (res) {
+        app.globalData.hasLogin = true
+        that.setData({
+          hasLogin: true
+        })
+        that.update()
+      }
+    })
+  },
+  userLogin: function (e) {
+    // var that = this;
+    // wx.navigateTo({ url: that.data.loginUrl })
+  },
   queryBooks: function (e) {
     var that = this;
 
@@ -162,63 +180,63 @@ Page({
     //console.log(inputMsg)
     this.ref = app.dianZiRef
     //console.log(this.ref)
-    this.ref.on("value", function(snapshot) {
-    //console.log(snapshot.val());
-		})
+    this.ref.on("value", function (snapshot) {
+      //console.log(snapshot.val());
+    })
     this.queryNameRef = this.ref.child(" '+inputMsg+ ' ")//获取inputMsg节点
     //console.log(this.queryNameRef)
-   // that.setData({
-   //   addressBook: this.queryNameRef
-   // });
-		this.ref.orderByKey().equalTo(inputMsg).on("child_added",function(snapshot){
-			console.log(snapshot);
-		  console.log(snapshot.key());
-		  console.log(snapshot.val());
-		  console.log(snapshot.val().name);
-		  console.log(snapshot.val().company);
-		  console.log(snapshot.val().phone);
-		  that.setData({
-		  	name:snapshot.val().name,
-		  	company:snapshot.val().company,
-		  	phone:snapshot.val().phone,
-		  	index:snapshot.val().index
-       // addressBook:snapshot.val()
+    // that.setData({
+    //   addressBook: this.queryNameRef
+    // });
+    this.ref.orderByKey().equalTo(inputMsg).on("child_added", function (snapshot) {
+      console.log(snapshot);
+      console.log(snapshot.key());
+      console.log(snapshot.val());
+      console.log(snapshot.val().name);
+      console.log(snapshot.val().company);
+      console.log(snapshot.val().phone);
+      that.setData({
+        name: snapshot.val().name,
+        company: snapshot.val().company,
+        phone: snapshot.val().phone,
+        index: snapshot.val().index
+        // addressBook:snapshot.val()
         //console.log(addressBook)
       })
-		  //that.data.addressBook = snapshot.val()
-		  console.log("tim add ----");
-		})
- /*   var options = {
-      url: config.clubApi.list,//'https://api.wxappclub.com/list'
-      data: {
-        appkey: config.appKey,
-        type: 'bookLibrary',
-        // columns:'title',
-        keywords: inputMsg
-        //columns: ['id', 'isbn13', 'title']
-      }
-    };
-
-    util.request(options, (res, err) => {//发送请求成功的回调函数？
-      var books = [];
-      for (var i = 0; i < res.data.result.length; i++) {
-        books.push(res.data.result[i].value);
-      }
-      that.setData({
-        bookList: books
-      });
-    });*/
+      //that.data.addressBook = snapshot.val()
+      console.log("tim add ----");
+    })
+    /*   var options = {
+         url: config.clubApi.list,//'https://api.wxappclub.com/list'
+         data: {
+           appkey: config.appKey,
+           type: 'bookLibrary',
+           // columns:'title',
+           keywords: inputMsg
+           //columns: ['id', 'isbn13', 'title']
+         }
+       };
+   
+       util.request(options, (res, err) => {//发送请求成功的回调函数？
+         var books = [];
+         for (var i = 0; i < res.data.result.length; i++) {
+           books.push(res.data.result[i].value);
+         }
+         that.setData({
+           bookList: books
+         });
+       });*/
 
   },
- /* goToDetailPage: function (e) {
-
-    var isbn13 = e.currentTarget.id;
-    var qty = e.currentTarget.dataset.qty;
-    wx.navigateTo({
-      url: '../detail/detail?id=' + isbn13 + '&qty=' + qty
-    });
-
-  },*/
+  /* goToDetailPage: function (e) {
+ 
+     var isbn13 = e.currentTarget.id;
+     var qty = e.currentTarget.dataset.qty;
+     wx.navigateTo({
+       url: '../detail/detail?id=' + isbn13 + '&qty=' + qty
+     });
+ 
+   },*/
   onShow: function () {
     // 页面显示
     //console.log('onshow');
@@ -239,7 +257,7 @@ Page({
     util.request(options, function (res) {
       var books = [];
       for (var i = 0; i < res.data.result.length; i++) {
-         books.push(res.data.result[i].value);
+        books.push(res.data.result[i].value);
         //books.push(JSON.parse(res.data.result[i].value));
         //console.log(typeof(res.data.result[i].value));
       }
@@ -247,7 +265,7 @@ Page({
         bookList: books
       })
     });
-    
+
 
 
   }

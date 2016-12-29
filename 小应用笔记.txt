@@ -72,3 +72,7 @@ http://tools.jb51.net/code/jsoncodeformat json各类小工具格式化，检查错误等，实用
  
 git config --global user.name "***"  
 git config --global user.email ***@qq.com  
+
+把用户第一次使用的时候就要输入自己的工号这个功能点搞通
+获取用户信息和登陆，请参考共享单车demo和微信官方demo
+数据结构如何组织看野狗文档

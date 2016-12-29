@@ -16,6 +16,7 @@
     <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
 </view>-->
 <view class="content" scroll-y="true">
+<block wx:if="{{hasLogin === true}}">
   <view class="search-bar">
     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
     <input placeholder="请输入姓名" bindchange="inputChange"/>
@@ -43,4 +44,25 @@
       <view class="line"></view>
     </view>
   </view>
+  </block>
+<!--
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="userLogin">登陆</button>
+    </view>-->
+     <!--tim add begin-->
+  <view class="container">
+  <view class="page-body">
+    <view class="page-body-wrapper">
+      <block wx:if="{{hasLogin === true}}">
+        <text class="page-body-title">已登录</text>
+        <text class="page-body-text">每个微信号中仅需登录 1 次，后续每次进入页面即可根据微信 id 自动拉取用户信息</text>
+      </block>
+      <block wx:if="{{hasLogin === false}}">
+        <text class="page-body-text">每个微信号中仅需登录一次</text>
+        <button class="page-body-button" type="primary" bindtap="login">微信登录</button>
+      </block>
+    </view>
+  </view>
+</view>
+<!--tim add end--> 
 </view>

@@ -40,21 +40,21 @@ Page({
     this.data.company = e.detail.value.inputCompany
     this.data.inputIndex = e.detail.value.inputIndex
     console.log(this.data.name, this.data.phone, this.data.company, this.data.inputIndex)
-   //  var value = { "\""+this.data.name+"\""+:{ "name": this.data.name, "phone": this.data.phone,"company": this.data.company,"index": this.data.inputIndex}}
-		
-		//var result="{"+"\""+"name"+"\""+":"+"\""+this.data.name+"\""+","+"\""+"phone"+"\""+":"+"\""+this.data.phone+"\""+","+"\""+"company"+"\""+":"+"\""+this.data.company+"\""+","+"\""+"index"+"\""+":"+"\""this.data.inputIndex+"\""+"}";  
+    //  var value = { "\""+this.data.name+"\""+:{ "name": this.data.name, "phone": this.data.phone,"company": this.data.company,"index": this.data.inputIndex}}
+
+    //var result="{"+"\""+"name"+"\""+":"+"\""+this.data.name+"\""+","+"\""+"phone"+"\""+":"+"\""+this.data.phone+"\""+","+"\""+"company"+"\""+":"+"\""+this.data.company+"\""+","+"\""+"index"+"\""+":"+"\""this.data.inputIndex+"\""+"}";  
     //var result={"\""+ "name"+"\""+":"+"\""+this.data.name+"\""}
- 
+
     //也可以用result.[this.data.name] = ...多看犀牛书和红宝书
     var result = {
-    	[this.data.name]:{
-    	"name":this.data.name,
-    	"phone":this.data.phone,
-    	"company":this.data.company,
-    	"index":this.data.inputIndex
+      [this.data.name]: {
+        "name": this.data.name,
+        "phone": this.data.phone,
+        "company": this.data.company,
+        "index": this.data.inputIndex
+      }
     }
-    	}
-    console.log(result); 
+    console.log(result);
     //
     if (e.detail.value.inputName != null && e.detail.value.inputName.trim() !== '') {
       //this.ref.push(e.detail.value.inputName)
