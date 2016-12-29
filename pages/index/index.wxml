@@ -49,7 +49,7 @@
       <view class="weui-btn-area">
         <button class="weui-btn" type="primary" bindtap="userLogin">登陆</button>
     </view>-->
-     <!--tim add begin-->
+     <!--tim add login begin-->
   <view class="container">
   <view class="page-body">
     <view class="page-body-wrapper">
@@ -64,5 +64,18 @@
     </view>
   </view>
 </view>
-<!--tim add end--> 
+<!--tim add  login end--> 
+<!--tim add begin getuserinfo--> 
+       <block wx:if="{{hasUserInfo === true}}">
+         <!--<wx-image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></wx-image>--> 
+          <text class="userinfo-nickname">姓名：{{userInfo.nickName}}</text>
+          <text class="userinfo-nickname">国家：{{userInfo.country}} 省份：{{userInfo.province}}</text>
+        <!--  <text class="userinfo-nickname">国家：{{userInfo.country}} 省份：{{userInfo.province}}</text>
+           <text class="userinfo-nickname">城市：{{userInfo.city}} 语言：{{userInfo.language}}</text>
+              <text class="userinfo-nickname">性别：{{userInfo.gender}}</text>   -->
+        </block>
+<!--tim add end getuserinfo--> 
+<!--tim add begin test bindAsArray--> 
+<view wx:for = "{{todo}}">{{item[".key"]}}-{{item[".value"]}}--{{item[".priority"]}}</view>
+<!--tim add test end bindAsArray--> 
 </view>

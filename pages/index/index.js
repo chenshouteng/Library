@@ -15,6 +15,8 @@ Page({
     index: '',
     loginUrl: '../login/login',
     hasLogin: app.globalData.hasLogin,
+    hasUserInfo: false,
+    todo:[],//test for bindAsArray
     inputValue: ''//存放输入查询的数据
   },
   inputChange: function (e) {
@@ -31,6 +33,9 @@ Page({
     console.log('onload --tim add')
     //console.log(addressBook)
     var that = this;
+    this.ref = app.dianZiRef
+    //this.todoRef = wilddog.sync().ref('todo').orderByPriority().limitToFirst(20)
+    app.todoRef.bindAsArray(this,'todo')//test bindAsArray
 
     //1.获取用户的基本信息，查询数据库获取用户的工号，并使用缓存存在本机
     //var openid = wx.getStorageSync('openid');
@@ -157,15 +162,33 @@ Page({
 
 
   },
+
   login: function () {
     var that = this
     wx.login({
       success: function (res) {
         app.globalData.hasLogin = true
+        console.log(res)
         that.setData({
           hasLogin: true
         })
-        that.update()
+        wx.getUserInfo({
+          success: function (res) {
+            // success
+            that.setData({
+              hasUserInfo: true,
+              userInfo: res.userInfo
+            })
+          },
+          fail: function () {
+            // fail
+            console.log("tim add -------fail")
+          },
+          complete: function () {
+            // complete
+          }
+        })
+        // that.update()
       }
     })
   },
@@ -178,7 +201,7 @@ Page({
 
     var inputMsg = that.data.inputValue;//用户输入的数据
     //console.log(inputMsg)
-    this.ref = app.dianZiRef
+
     //console.log(this.ref)
     this.ref.on("value", function (snapshot) {
       //console.log(snapshot.val());

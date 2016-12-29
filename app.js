@@ -12,6 +12,7 @@ App({
     wilddog.initializeApp(config)
     this.ref = wilddog.sync().ref('/')
     this.dianZiRef = this.ref.child('dianZi')//获取library节点
+    this.todoRef = this.dianZiRef.orderByPriority().limitToFirst(2)//test
   },
   getUserInfo:function(cb){
     var that = this
