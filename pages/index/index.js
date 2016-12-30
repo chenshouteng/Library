@@ -16,7 +16,7 @@ Page({
     loginUrl: '../login/login',
     hasLogin: app.globalData.hasLogin,
     hasUserInfo: false,
-    todo:[],//test for bindAsArray
+    todo: [],//test for bindAsArray
     inputValue: ''//存放输入查询的数据
   },
   inputChange: function (e) {
@@ -35,8 +35,8 @@ Page({
     var that = this;
     this.ref = app.dianZiRef
     //this.todoRef = wilddog.sync().ref('todo').orderByPriority().limitToFirst(20)
-    app.todoRef.bindAsArray(this,'todo')//test bindAsArray
-
+    //app.todoRef.bindAsArray(this,'todo')//test bindAsArray
+    this.ref.bindAsArray(this, 'todo')//test bindAsArray
     //1.获取用户的基本信息，查询数据库获取用户的工号，并使用缓存存在本机
     //var openid = wx.getStorageSync('openid');
 

@@ -76,3 +76,43 @@ git config --global user.email ***@qq.com
 把用户第一次使用的时候就要输入自己的工号这个功能点搞通
 获取用户信息和登陆，请参考共享单车demo和微信官方demo
 数据结构如何组织看野狗文档
+看weui
+发现一个有用的工具，可以仿别人的页面，FastStone Capture
+1、后台数据结构怎么组织
+2、页面怎么设计，使用什么工具
+3、页面逻辑
+写demo，别看了
+做一个搜索栏，打字会弹出数据库的数据。这个要怎么做呢
+html5输入框自动下拉提示，几行代码搞定。经过测试，发现不能用，还是得看input官方文档有没有这个功能
+用其他方法代替：
+	你既然会实时获取用户输入的数据，那么用户刚开始输入的时候就会触发那个函数对吧，然后将用户输入的数据提交到后台，
+	进行匹配，然后将匹配的结果返回，放作为下拉显示出来，不就可以了。找下拉功能的组件
+
+
+如何从一个页面跳转到另一个页面，并带上参数
+    <view wx:for="{{bookList}}" wx:key="ISBN13" id="{{item.isbn13}}" data-qty="{{item.qty}}" bindtap="goToDetailPage">
+	......</view>
+	这里定义一个view ,当点击下方的组件时，会跳转到goToDetailPage函数
+	goToDetailPage: function (e) {
+    var isbn13 = e.currentTarget.id;
+    var qty = e.currentTarget.dataset.qty;
+    wx.navigateTo({
+      url: '../detail/detail?id=' + isbn13 + '&qty=' + qty
+    });
+  },
+  goToDetailPage函数解析出参数，然后使用wx.navigateTo跳转到../detail/detail页面。
+  在detail页面中，在onload页面加载函数中
+  我们可以看到onLoad: function (options)，我们可以通过options.id和options.qty获取从index页面传来的参数
+  
+  用wx:if来控制同一位置在不同时刻显示不同按钮
+         <view class="btn-area">
+            <button type="primary" size="default" wx:if="{{showBorrowBtn}}" bindtap="borrowBook">借阅</button>
+            <button type="primary" size="default" wx:if="{{showBookBtn}}">预约</button>
+            <button type="primary" size="default" wx:if="{{showAddBook}}" bindtap="addBook">录入</button>
+        </view>
+如何获取app引用？
+var app = getApp();
+var url = app.url;//这样就获取了app页面的数据
+如何获取某个文件的某个函数？
+var util = require('../../utils/util');
+util.require就等于调用了util文件的函数

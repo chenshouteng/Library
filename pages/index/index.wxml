@@ -19,7 +19,7 @@
 <block wx:if="{{hasLogin === true}}">
   <view class="search-bar">
     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-    <input placeholder="请输入姓名" bindchange="inputChange"/>
+    <input  placeholder="请输入姓名" bindchange="inputChange"/>
     <button type="primary" bindtap="queryBooks">查询</button>
   </view>
   <view class="header-bg"></view>
@@ -76,6 +76,23 @@
         </block>
 <!--tim add end getuserinfo--> 
 <!--tim add begin test bindAsArray--> 
-<view wx:for = "{{todo}}">{{item[".key"]}}-{{item[".value"]}}--{{item[".priority"]}}</view>
+<!--<view wx:for = "{{todo}}">{{item[".key"]}}-{{item[".value"]}}--{{item[".priority"]}}</view>--> 
 <!--tim add test end bindAsArray--> 
+ <input type="text" placeholder="请输入水果"  list="fruits" />    
+    <datalist id="fruits">    
+      <option value="Apple"></option>     
+      <option value="Orange"></option>     
+      <option value="Peach"></option>     
+    </datalist>
+<!--
+<datalist id="fruits">    
+  Pick your favorite fruit    
+  <select name="fruit_sel">    
+  <option value="Apple">Apple</option>     
+  <option value="Orange">Orange</option>     
+  <option value="Peach">Peach</option>     
+  </select>    
+  or type one.    
+</datalist>   --> 
+<input type="text" name="fruit" value="" list="fruits" />  
 </view>
