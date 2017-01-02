@@ -116,3 +116,5 @@ var url = app.url;//这样就获取了app页面的数据
 如何获取某个文件的某个函数？
 var util = require('../../utils/util');
 util.require就等于调用了util文件的函数
+
+只能说ui不会寸步难行！必须学习 了，工具还是啥，css

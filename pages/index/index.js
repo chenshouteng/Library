@@ -17,10 +17,12 @@ Page({
     hasLogin: app.globalData.hasLogin,
     hasUserInfo: false,
     todo: [],//test for bindAsArray
+    showMessage: false,
     inputValue: ''//存放输入查询的数据
   },
   inputChange: function (e) {
     this.data.inputValue = e.detail.value;
+    console.log(this.data.inputValue.length)
   },
   //事件处理函数
   /*
@@ -125,10 +127,6 @@ Page({
     // };
 
 
-
-
-
-
     //2.从数据库获取所有书本的信息
     // var options = {
     //   url: config.clubApi.list,
@@ -148,8 +146,6 @@ Page({
     //     bookList: books
     //   })
     // });
-
-
 
     //this.queryAllBooks();
     // var timestamp3 = new Date().getTime();
@@ -219,6 +215,7 @@ Page({
       console.log(snapshot.val().company);
       console.log(snapshot.val().phone);
       that.setData({
+        showMessage: true,
         name: snapshot.val().name,
         company: snapshot.val().company,
         phone: snapshot.val().phone,

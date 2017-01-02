@@ -1,32 +1,91 @@
-
-<!--<view class="weui-search-bar">
-    <view class="weui-search-bar__form">
-        <view class="weui-search-bar__box">
-            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-            <input type="text" class="weui-search-bar__input" placeholder="搜索" />
-            <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-                <icon type="clear" size="14"></icon>
-            </view>
-        </view>
-        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-            <icon class="weui-icon-search" type="search" size="14"></icon>
-            <view class="weui-search-bar__text">搜索</view>
-        </label>
+<!--搜索begin
+<view class="page">
+    <view class="page__hd">
+        <view class="page__title">SearchBar</view>
+        <view class="page__desc">搜索栏</view>
     </view>
-    <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-</view>-->
+    <view class="page__bd">
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" placeholder="搜索22" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                    <icon class="weui-icon-search" type="search" size="14"></icon>
+                    <view class="weui-search-bar__text">搜索31</view>
+                </label>
+            </view>
+            <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+        </view>
+        <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>
+-->
 <view class="content" scroll-y="true">
+  <!--提示begin-->
+ 
+          <view wx:if="{{inputValue.length > 0}}">
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>实时搜索文本</view>
+                </view>
+            </navigator>
+        </view>
+
+  <!--提示end-->
 <block wx:if="{{hasLogin === true}}">
   <view class="search-bar">
     <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
     <input  placeholder="请输入姓名" bindchange="inputChange"/>
     <button type="primary" bindtap="queryBooks">查询</button>
   </view>
+
   <view class="header-bg"></view>
   <view class="book-content">
     <!--<view wx:for="{{bookList}}"  bindtap="goToDetailPage">-->
     <view  bindtap="goToDetailPage">
       <view class="book-list">
+       <block wx:if="{{showMessage === true}}">
         <view class="book-image">
          <!-- <image src="{{image}}" mode="aspectFit"></image>-->
          <view>图片</view>
@@ -39,7 +98,8 @@
             <view>学号:{{index}}\n</view>
            <!-- <view>可借数量:{{item.qty}}\n</view>-->
           </view>
-        </view>
+          </view>
+         </block>
       </view>
       <view class="line"></view>
     </view>
@@ -50,9 +110,6 @@
         <button class="weui-btn" type="primary" bindtap="userLogin">登陆</button>
     </view>-->
      <!--tim add login begin-->
-  <view class="container">
-  <view class="page-body">
-    <view class="page-body-wrapper">
       <block wx:if="{{hasLogin === true}}">
         <text class="page-body-title">已登录</text>
         <text class="page-body-text">每个微信号中仅需登录 1 次，后续每次进入页面即可根据微信 id 自动拉取用户信息</text>
@@ -61,9 +118,6 @@
         <text class="page-body-text">每个微信号中仅需登录一次</text>
         <button class="page-body-button" type="primary" bindtap="login">微信登录</button>
       </block>
-    </view>
-  </view>
-</view>
 <!--tim add  login end--> 
 <!--tim add begin getuserinfo--> 
        <block wx:if="{{hasUserInfo === true}}">
@@ -78,21 +132,7 @@
 <!--tim add begin test bindAsArray--> 
 <!--<view wx:for = "{{todo}}">{{item[".key"]}}-{{item[".value"]}}--{{item[".priority"]}}</view>--> 
 <!--tim add test end bindAsArray--> 
- <input type="text" placeholder="请输入水果"  list="fruits" />    
-    <datalist id="fruits">    
-      <option value="Apple"></option>     
-      <option value="Orange"></option>     
-      <option value="Peach"></option>     
-    </datalist>
-<!--
-<datalist id="fruits">    
-  Pick your favorite fruit    
-  <select name="fruit_sel">    
-  <option value="Apple">Apple</option>     
-  <option value="Orange">Orange</option>     
-  <option value="Peach">Peach</option>     
-  </select>    
-  or type one.    
-</datalist>   --> 
-<input type="text" name="fruit" value="" list="fruits" />  
+
 </view>
+<!--搜索begin-->
+

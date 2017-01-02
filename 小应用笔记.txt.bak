@@ -1,0 +1,120 @@
+当json的键为变量而不是字符串时，怎么写？
+比如：
+var b = “ccc” + “ddd”;
+var a = {b : 6};
+其中b不是字符串字面量，而是变量名，此时是非法的。
+
+我虽然可以写成：
+var b = “ccc” + “ddd”;
+var a = {};
+a[b] = 6;
+
+但如果我为了代码简洁，仍然想一次性给a赋值，该怎么写？
+
+var b = 'ccc' + 'ddd';
+var a = {
+  b: 6
+};
+console.log(a.b); // 6
+console.log(b); // cccddd
+console.log(window.b); // cccddd
+
+/* 首先你创建了一个window的属性叫b, 并给它赋值为'cccddd'
+ * 然后你创建了一个对象"a", 声明了一个它的属性叫b, 并且给b赋值为6
+ * 注意第一行的b实质上是window.b, 第二行的b是a.b
+ * 这是两个对象的两个属性而已, 除了叫一个名没其他联系
+ */
+
+var b = 'ccc' + 'ddd';
+var a = {};
+a[b] = 6;
+console.log(a.cccddd); // 6
+console.log(window.b); // cccddd
+
+/* 这时候发生的事情是, 创建了一个对象a, 声明了一个属性, 属性的名是变量b的值
+ * 变量b仍然是window的一个属性
+ */
+
+回答问题
+
+第一个情况并不是非法的, 只是没有达到题主想要的效果, 这种写法是合理的并且是正确的
+第二种情况同样
+JS有两种访问变量的方式, 一种是a.b的形式, 另一种是a[b]的形式, 两种没有什么差别, 好处是, 第二种的b, 可以用字符串, 
+也可以用变量, 这样当你不知道某接口或某对象的属性叫什么的时候, 可以将一个变量替代, 或者写一个controller函数时, 
+无需关心view需要访问modal的哪个属性, 只需在其中传递变量即可
+
+说两句没用的, 其实这是很基础的东西, 红宝书或者犀牛书都有详细讲解, 多看看基础挺好的
+还有, 所谓代码简洁, 服务的是阅读代码的人还有具体业务, 当写的多了, 对基础的东西了解的更透彻, 相信你的代码会更让自己满意
+
+一开始不要太纠结所谓代码简洁所谓效率所谓解耦, 如果只有几十行几百行的代码量, 谈这些都是搞笑
+遵守一定的代码规范, 合理的注释就好了
+
+//也可以用下面的方法
+var a = {
+[b] : “ccc” + “ddd”
+};
+意思是可以用变量代替key值
+
+总结：出现这种状况不知道怎么用，说到底也是基础能力的问题，应该多看看红宝书和犀牛书
+学会了如何使用update(value)
+value	object类型
+包含要合并子节点的对象
+
+小程序产品思考
+可以弄一个模板小程序出来，让商户自己去录入图片
+小程序可以做菜单本，解决的痛点是：现在很多餐馆都是一本一本纸质的书籍，对于一桌十几个人来说，一本传阅的效率低下
+可以在微信中看到几公里附近的小程序，可以点开一家超市或者店铺的菜单，提前看。这个功能点，我想可以做成店铺的展示，通过一些精美的
+图片来充分的展示店铺，或者加一些技术，可以令这家店铺更加明显的展示出在微信上面。在附近并先立即排队购票也是挺不错的，不用等到店那里
+再排队。可以充分考虑到微信可以搜索附近几公里这个距离限制。让一些真正想要消费的人享受到这个服务，也可以排除掉一部分人
+
+http://tools.jb51.net/code/jsoncodeformat json各类小工具格式化，检查错误等，实用
+ 手动字符串拼接成JSON http://blog.csdn.net/chopstics/article/details/44570901
+ 
+git config --global user.name "***"  
+git config --global user.email ***@qq.com  
+
+把用户第一次使用的时候就要输入自己的工号这个功能点搞通
+获取用户信息和登陆，请参考共享单车demo和微信官方demo
+数据结构如何组织看野狗文档
+看weui
+发现一个有用的工具，可以仿别人的页面，FastStone Capture
+1、后台数据结构怎么组织
+2、页面怎么设计，使用什么工具
+3、页面逻辑
+写demo，别看了
+做一个搜索栏，打字会弹出数据库的数据。这个要怎么做呢
+html5输入框自动下拉提示，几行代码搞定。经过测试，发现不能用，还是得看input官方文档有没有这个功能
+用其他方法代替：
+	你既然会实时获取用户输入的数据，那么用户刚开始输入的时候就会触发那个函数对吧，然后将用户输入的数据提交到后台，
+	进行匹配，然后将匹配的结果返回，放作为下拉显示出来，不就可以了。找下拉功能的组件
+
+
+如何从一个页面跳转到另一个页面，并带上参数
+    <view wx:for="{{bookList}}" wx:key="ISBN13" id="{{item.isbn13}}" data-qty="{{item.qty}}" bindtap="goToDetailPage">
+	......</view>
+	这里定义一个view ,当点击下方的组件时，会跳转到goToDetailPage函数
+	goToDetailPage: function (e) {
+    var isbn13 = e.currentTarget.id;
+    var qty = e.currentTarget.dataset.qty;
+    wx.navigateTo({
+      url: '../detail/detail?id=' + isbn13 + '&qty=' + qty
+    });
+  },
+  goToDetailPage函数解析出参数，然后使用wx.navigateTo跳转到../detail/detail页面。
+  在detail页面中，在onload页面加载函数中
+  我们可以看到onLoad: function (options)，我们可以通过options.id和options.qty获取从index页面传来的参数
+  
+  用wx:if来控制同一位置在不同时刻显示不同按钮
+         <view class="btn-area">
+            <button type="primary" size="default" wx:if="{{showBorrowBtn}}" bindtap="borrowBook">借阅</button>
+            <button type="primary" size="default" wx:if="{{showBookBtn}}">预约</button>
+            <button type="primary" size="default" wx:if="{{showAddBook}}" bindtap="addBook">录入</button>
+        </view>
+如何获取app引用？
+var app = getApp();
+var url = app.url;//这样就获取了app页面的数据
+如何获取某个文件的某个函数？
+var util = require('../../utils/util');
+util.require就等于调用了util文件的函数
+
+只能说ui不会寸步难行！必须学习 了
