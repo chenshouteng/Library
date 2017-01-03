@@ -18,6 +18,9 @@ Page({
     hasUserInfo: false,
     todo: [],//test for bindAsArray
     showMessage: false,
+    count:0,
+    tipMessage:[],
+    preInputValue:'',//存放上一次查询输入的数据
     inputValue: ''//存放输入查询的数据
   },
   inputChange: function (e) {
@@ -196,6 +199,7 @@ Page({
     var that = this;
 
     var inputMsg = that.data.inputValue;//用户输入的数据
+
     //console.log(inputMsg)
 
     //console.log(this.ref)
@@ -207,6 +211,32 @@ Page({
     // that.setData({
     //   addressBook: this.queryNameRef
     // });
+    if(that.data.preInputValue != that.data.inputValue)
+    {
+      that.data.tipMessage.length = 0;//每次点击后查询后，先把显示提示的数组清零
+        this.ref.orderByKey().startAt(inputMsg).limitToFirst(4).on("child_added",function(snapshot){
+        console.log("test for tim");
+        var tmp = snapshot.key();
+        var tmpMessage;
+
+        if(that.data.tipMessage.length == 4)
+        {
+          that.data.tipMessage.length = 0;
+        }
+        that.data.tipMessage.push(tmp);
+        that.setData({
+
+        })
+        console.log(that.data.tipMessage.length)
+        console.log(snapshot.key());
+        });
+        that.data.preInputValue = that.data.inputValue;
+        
+    }
+
+   // this.ref.orderByKey().endAt('陈扬').on("child_added",function(snapshot){
+    //  console.log(snapshot.key());
+   // });
     this.ref.orderByKey().equalTo(inputMsg).on("child_added", function (snapshot) {
       console.log(snapshot);
       console.log(snapshot.key());
@@ -226,27 +256,6 @@ Page({
       //that.data.addressBook = snapshot.val()
       console.log("tim add ----");
     })
-    /*   var options = {
-         url: config.clubApi.list,//'https://api.wxappclub.com/list'
-         data: {
-           appkey: config.appKey,
-           type: 'bookLibrary',
-           // columns:'title',
-           keywords: inputMsg
-           //columns: ['id', 'isbn13', 'title']
-         }
-       };
-   
-       util.request(options, (res, err) => {//发送请求成功的回调函数？
-         var books = [];
-         for (var i = 0; i < res.data.result.length; i++) {
-           books.push(res.data.result[i].value);
-         }
-         that.setData({
-           bookList: books
-         });
-       });*/
-
   },
   /* goToDetailPage: function (e) {
  
@@ -259,9 +268,9 @@ Page({
    },*/
   onShow: function () {
     // 页面显示
-    //console.log('onshow');
+    console.log('onshow');
     //this.queryAllBooks();
-    this.queryBooks();
+    //this.queryBooks();
   },
   queryAllBooks: function () {
 

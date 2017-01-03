@@ -79,7 +79,17 @@
     <input  placeholder="请输入姓名" bindchange="inputChange"/>
     <button type="primary" bindtap="queryBooks">查询</button>
   </view>
-
+<!--tim add begin--明天再来 201713-->
+    <view wx:if="{{inputValue.length > 0}}">
+        <view wx:for="{{tipMessage}}">
+            <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">
+                    <view>{{item}}</view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+<!--tim add end-->
   <view class="header-bg"></view>
   <view class="book-content">
     <!--<view wx:for="{{bookList}}"  bindtap="goToDetailPage">-->
